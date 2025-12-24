@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: prefect-framework
+Version: 1.0.0
+Summary: A flexible Prefect orchestration library with registry pattern for managing flows and tasks
+Home-page: https://github.com/grepx-support/prefect-framework
+Author: Grepx Team
+Author-email: Grepx Team <support@grepx.com>
+License: MIT
+Project-URL: Homepage, https://github.com/grepx-support/prefect-framework
+Project-URL: Repository, https://github.com/grepx-support/prefect-framework
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: prefect>=3.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# Prefect Framework Library
+
+A flexible Prefect orchestration library with registry pattern for managing flows and tasks.
+
+## Features
+
+- **Registry Pattern**: Register and manage different flows and tasks dynamically
+- **Factory Pattern**: Create flow and task instances based on configuration
+- **Base Classes**: Extensible base classes for creating custom flows and tasks
+- **Flow Caching**: Automatic flow instance caching and reuse
+- **Task Management**: Centralized task registration and retrieval
+
+## Installation
+
+```bash
+# Install from local development
+pip install -e libs/prefect_framework
+
+# Or add to requirements.txt
+-e libs/prefect_framework
+```
+
+## Quick Start
+
+### Define a Custom Flow
+
+```python
+from prefect_framework import PrefectApp
+
+# Create app instance
+app = PrefectApp()
+
+# Register flows
+from my_flows import my_etl_flow
+app.register_flow("etl", my_etl_flow)
+
+# Get flows
+flow = app.get_flow("etl")
+```
+
+### Define a Custom Task
+
+```python
+from prefect_framework import PrefectApp
+
+# Create app instance
+app = PrefectApp()
+
+# Register tasks
+from my_tasks import fetch_data_task
+app.register_task("fetch_data", fetch_data_task)
+
+# Get tasks
+task = app.get_task("fetch_data")
+```
+
+## License
+
+MIT
